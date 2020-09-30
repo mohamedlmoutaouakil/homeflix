@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
+import Link from '@material-ui/core/Link';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -79,16 +80,16 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Home
+            <Link color="inherit" href="/home">Home</Link>
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap>
-            Movies
+            <Link color="inherit" href="/movies">Movies</Link>
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap>
-            Series
+            <Link color="inherit" href="/series">Series</Link>
           </Typography>
           <Typography className={classes.title} variant="h6" noWrap>
-            Animes
+            <Link color="inherit" href="/animes">Animes</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

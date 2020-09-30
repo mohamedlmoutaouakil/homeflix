@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { MOVIES } from '../shared/movies'
 import MediaCard from './MediaCard';
 import { ListSubheader } from '@material-ui/core';
 
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MediaList() {
+function MediaList(props) {
   const classes = useStyles();
 
   return (
@@ -32,7 +31,7 @@ function MediaList() {
         <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
           <ListSubheader component="div">Movies</ListSubheader>
         </GridListTile>
-        {MOVIES.map((item) => (
+        {props.items.map((item) => (
           <GridListTile key={item.id} cols={1}>
             <MediaCard item={item} />
           </GridListTile>

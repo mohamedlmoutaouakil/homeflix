@@ -1,12 +1,19 @@
 import React from 'react';
 import Header from './HeaderComponent';
-import MediaList from './MediaListComponent';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import Home from './HomeComponent';
+import Movies from './MoviesComponent';
+import {MOVIES} from '../shared/movies';
 
 function Main() {
   return (
     <div className="App">
       <Header />
-      <MediaList />
+      <Switch>
+        <Route path="/home" component={() => <Home />} />
+        <Route exact path="/movies" component={() => <Movies movies={MOVIES}/>} />
+        <Redirect to="/home" />
+      </Switch>
     </div>
   );
 }
