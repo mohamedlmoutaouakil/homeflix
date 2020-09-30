@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     width: 'auto',
-    height: 'auto',
+    height: 475,
     margin: 8,
   },
   img: {
@@ -31,14 +31,11 @@ function MediaCard({item}) {
           title={item.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" noWrap>
             {item.name}
           </Typography>
           <Typography gutterBottom variant="subtitle1" component="h2">
             {item.category}  ({item.year})
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {item.description}
           </Typography>
         </CardContent>
       </CardActionArea>
