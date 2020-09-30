@@ -5,6 +5,8 @@ import MediaList from './MediaListComponent';
 function Main() {
   return (
     <div className="App">
+      <Header />
+      <MediaList />
     </div>
   );
 }
