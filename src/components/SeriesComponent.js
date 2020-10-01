@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Movies(props) {
+function Series(props) {
   const classes = useStyles();
 
   return (
@@ -20,14 +20,14 @@ function Movies(props) {
         <Link color="inherit" href="/home">
           Home
         </Link>
-        <Typography color="textPrimary">Movies</Typography>
+        <Typography color="textPrimary">Series</Typography>
       </Breadcrumbs>
       <div className={classes.itemsCount}>
-        <Typography variant='caption'>{props.movies.length} movies</Typography>
+        <Typography variant='caption'>{props.series.length} series</Typography>
       </div>
-      <MediaList items={props.movies} subheader='Movies' />
+      <MediaList items={props.series} subheader='Series' />
     </Container>
   );
 }
 
-export default Movies;
+export default Series;
