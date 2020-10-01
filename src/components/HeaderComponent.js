@@ -69,7 +69,7 @@ function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
@@ -106,6 +106,7 @@ function Header() {
           </div>
         </Toolbar>
       </AppBar>
+      <Toolbar /> 
     </div>
   );
 }
