@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,6 +8,8 @@ import Link from '@material-ui/core/Link';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { Fade, Paper, Popper } from '@material-ui/core';
+import SearchList from './SearchListComponent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,10 +64,46 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  popper: {
+    width: 250,
+  },
+  typography: {
+    padding: theme.spacing(2),
+  }
 }));
 
-function Header() {
+function Header(props) {
   const classes = useStyles();
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const performSearch = (event) => {
+
+    const searchValue = event.target.value;
+    var allItems = [...props.movies];
+
+    if (searchValue.length > 2){
+      setAnchorEl(event.currentTarget);
+      const results = allItems.filter(
+        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      )
+      setSearchResults(results);
+    }
+    else {
+      if (anchorEl) {
+        setAnchorEl(null);
+      }
+    }
+
+  }
+
+  const open = Boolean(anchorEl);
+
+  let popperContent = (<Typography className={classes.typography}>No results found</Typography>);
+  if (searchResults.length > 0)
+    popperContent = (<SearchList items={searchResults} />);
+
 
   return (
     <div className={classes.root}>
@@ -102,8 +140,20 @@ function Header() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={performSearch}
+              onBlur={() => {setAnchorEl(null)}}
+              onClick={performSearch}
             />
           </div>
+          <Popper className={classes.popper} open={open} anchorEl={anchorEl} placement="bottom" transition disablePortal>
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper className={classes.paper}>
+                  {popperContent}
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </Toolbar>
       </AppBar>
       <Toolbar /> 

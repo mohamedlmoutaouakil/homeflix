@@ -61,7 +61,11 @@ function Main(props) {
 
   return (
     <div className="App">
-      <Header />
+      <Header 
+        movies={props.movies.movies}
+        series={props.series.series}
+        animes={props.animes.animes}
+      />
       <Switch>
         <Route path="/home" component={() => <Home />} />
         <Route exact path="/movies" component={MoviesPage} />
