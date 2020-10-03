@@ -1,4 +1,4 @@
-import { Breadcrumbs, Container, Link, makeStyles, Typography } from '@material-ui/core';
+import { Breadcrumbs, CircularProgress, Container, Link, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import MediaList from './MediaListComponent';
 
@@ -13,7 +13,33 @@ const useStyles = makeStyles((theme) => ({
 
 function Movies(props) {
   const classes = useStyles();
-
+  if (props.isLoading) {
+    return (
+      <Container fixed>
+        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumbs}>
+          <Link color="inherit" href="/home">
+            Home
+          </Link>
+          <Typography color="textPrimary">Movies</Typography>
+        </Breadcrumbs>
+        <CircularProgress />
+      </Container>
+    );
+  }
+  else if (props.errMess) {
+    return (
+      <Container fixed>
+        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumbs}>
+          <Link color="inherit" href="/home">
+            Home
+          </Link>
+          <Typography color="textPrimary">Movies</Typography>
+        </Breadcrumbs>
+        <Typography color="error">{props.errMess}</Typography>
+      </Container>
+    );
+  }
+  else {
   return (
     <Container fixed>
       <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumbs}>
@@ -28,6 +54,7 @@ function Movies(props) {
       <MediaList items={props.movies} subheader='Movies' />
     </Container>
   );
+}
 }
 
 export default Movies;
