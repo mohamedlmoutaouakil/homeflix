@@ -75,20 +75,33 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
   const classes = useStyles();
 
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState({});
   const [anchorEl, setAnchorEl] = useState(null);
 
   const performSearch = (event) => {
 
     const searchValue = event.target.value;
-    var allItems = [...props.movies];
+    let allItems = {
+      movies: props.movies,
+      series: props.series,
+      animes: props.animes,
+      totalResults: 0
+    }
 
     if (searchValue.length > 2){
       setAnchorEl(event.currentTarget);
-      const results = allItems.filter(
+      
+      allItems.movies = allItems.movies.filter(
         (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
       )
-      setSearchResults(results);
+      allItems.series = allItems.series.filter(
+        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      )
+      allItems.animes = allItems.animes.filter(
+        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+      )
+      allItems.totalResults = allItems.movies.length + allItems.series.length + allItems.animes.length;
+      setSearchResults(allItems);
     }
     else {
       if (anchorEl) {
@@ -101,7 +114,7 @@ function Header(props) {
   const open = Boolean(anchorEl);
 
   let popperContent = (<Typography className={classes.typography}>No results found</Typography>);
-  if (searchResults.length > 0)
+  if (searchResults.totalResults > 0)
     popperContent = (<SearchList items={searchResults} />);
 
 
@@ -141,7 +154,7 @@ function Header(props) {
               }}
               inputProps={{ 'aria-label': 'search' }}
               onChange={performSearch}
-              onBlur={() => {setAnchorEl(null)}}
+              // onBlur={() => {setAnchorEl(null)}}
               onClick={performSearch}
             />
           </div>
