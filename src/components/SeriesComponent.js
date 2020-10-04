@@ -52,7 +52,7 @@ function Series(props) {
         <div className={classes.itemsCount}>
           <Typography variant='caption'>{props.series.length} series</Typography>
         </div>
-        <MediaList items={props.series} subheader='Series' />
+        <MediaList items={props.series} page='series' subheader='Series' />
       </Container>
     );
   }
