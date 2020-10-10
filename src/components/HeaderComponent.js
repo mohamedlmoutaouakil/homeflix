@@ -8,21 +8,35 @@ import Link from '@material-ui/core/Link';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import { Fade, Paper, Popper } from '@material-ui/core';
+import { Box, Collapse, Fade, Paper, Popper } from '@material-ui/core';
 import SearchList from './SearchListComponent';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  appBar: {
+    background: 'black',
+  },
+  collapse: {
+    width: "100%",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+     display: 'none', 
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    }
   },
   title: {
     marginRight: theme.spacing(3),
-    display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
     },
   },
   search: {
@@ -75,8 +89,13 @@ const useStyles = makeStyles((theme) => ({
 function Header(props) {
   const classes = useStyles();
 
+  const [openMenu, setOpenMenu] = useState(true);
   const [searchResults, setSearchResults] = useState({});
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = () => {
+    setOpenMenu(!openMenu);
+  };
 
   const performSearch = (event) => {
 
@@ -120,44 +139,50 @@ function Header(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={handleClick}
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link color="inherit" href="/home">Home</Link>
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link color="inherit" href="/movies">Movies</Link>
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link color="inherit" href="/series">Series</Link>
-          </Typography>
-          <Typography className={classes.title} variant="h6" noWrap>
-            <Link color="inherit" href="/animes">Animes</Link>
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+          <Collapse in={openMenu} timeout="auto" unmountOnExit className={classes.collapse}>
+            <Box display="flex" flexWrap="wrap"
+              alignContent="flex-start">
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link color="inherit" href="/home">Home</Link>
+            </Typography>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link color="inherit" href="/movies">Movies</Link>
+            </Typography>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link color="inherit" href="/series">Series</Link>
+            </Typography>
+            <Typography className={classes.title} variant="h6" noWrap>
+              <Link color="inherit" href="/animes">Animes</Link>
+            </Typography>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={performSearch}
+                // onBlur={() => {setAnchorEl(null)}}
+                onClick={performSearch}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              onChange={performSearch}
-              // onBlur={() => {setAnchorEl(null)}}
-              onClick={performSearch}
-            />
-          </div>
+            </Box>
+          </Collapse>
           <Popper className={classes.popper} open={open} anchorEl={anchorEl} placement="bottom" transition disablePortal>
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>
