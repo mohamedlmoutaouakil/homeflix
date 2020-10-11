@@ -4,7 +4,7 @@ import {baseUrl} from '../shared/baseUrl'
 export const fetchMovies = () => (dispatch) => {
   dispatch(moviesLoading(true));
 
-  return fetch(baseUrl + 'movies')
+  return fetch(baseUrl + 'medias?media_type=movies')
     .then(response => {
       if (response.ok) {
         return response;
@@ -40,7 +40,7 @@ export const moviesFailed = (errmess) => ({
 export const fetchSeries = () => (dispatch) => {
   dispatch(seriesLoading(true));
 
-  return fetch(baseUrl + 'series')
+  return fetch(baseUrl + 'medias?media_type=series')
     .then(response => {
       if (response.ok) {
         return response;
@@ -76,7 +76,7 @@ export const seriesFailed = (errmess) => ({
 export const fetchAnimes = () => (dispatch) => {
   dispatch(animesLoading(true));
 
-  return fetch(baseUrl + 'animes')
+  return fetch(baseUrl + 'medias?media_type=animes')
     .then(response => {
       if (response.ok) {
         return response;

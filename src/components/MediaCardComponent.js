@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     margin: 8,
   },
   img: {
-    maxHeight: 500,
+    height: 300,
   },
   link: {
     color: 'inherit',
@@ -31,17 +31,17 @@ function MediaCard({item, page}) {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt={item.name}
+            alt={item.title}
             className={classes.img}
             image={item.poster}
-            title={item.name}
+            title={item.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" noWrap>
-              {item.name}
+              {item.title}
             </Typography>
             <Typography gutterBottom variant="subtitle1" component="h2">
-              {item.category}  ({item.year})
+              {item.imdbRating}  ({item.year})
             </Typography>
           </CardContent>
         </CardActionArea>

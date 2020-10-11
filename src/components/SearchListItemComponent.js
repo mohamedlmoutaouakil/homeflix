@@ -29,7 +29,7 @@ function SearchListItem({item, page}) {
         <Avatar variant="square" className={classes.avatar} alt={item.name} src={item.poster} />
       </ListItemAvatar>
       <ListItemText
-        primary={item.name}
+        primary={item.title}
         secondary={
           <>
             <Typography
@@ -38,7 +38,7 @@ function SearchListItem({item, page}) {
               className={classes.inline}
               color="textPrimary"
             >
-              {item.category}
+              {item.genre}
             </Typography>
             <Typography
               component="span"
