@@ -27,7 +27,7 @@ function SearchList({items}) {
   searchListItems.push(
     items.movies.map((item) => {
       return (
-        <SearchListItem item={item} page='movies' />
+        <SearchListItem item={item} />
       );
     })
   );
@@ -41,7 +41,7 @@ function SearchList({items}) {
   searchListItems.push(
     items.series.map((item) => {
       return (
-        <SearchListItem item={item} page='series' />
+        <SearchListItem item={item} />
       );
     })
   );
@@ -55,7 +55,7 @@ function SearchList({items}) {
   searchListItems.push(
     items.animes.map((item) => {
       return (
-        <SearchListItem item={item} page='animes' />
+        <SearchListItem item={item} />
       );
     })
   );

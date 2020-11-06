@@ -24,7 +24,7 @@ function SearchListItem({item, page}) {
   const classes = useStyles();
 
   return (
-    <ListItem className={classes.listItem} component="a" href={`/${page}/${item.id}`} alignItems="flex-start">
+    <ListItem className={classes.listItem} component="a" href={`/medias/${item.id}`} alignItems="flex-start">
       <ListItemAvatar>
         <Avatar variant="square" className={classes.avatar} alt={item.name} src={item.poster} />
       </ListItemAvatar>

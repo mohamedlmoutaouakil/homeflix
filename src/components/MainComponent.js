@@ -64,29 +64,14 @@ function Main(props) {
     );
   }
 
-  const MoviesPlayerPage = ({match}) => {
-    return (
-      <MediaPlayer item={movies.filter((m) => m.id === parseInt(match.params.id, 10))[0]} 
-        isLoading={props.movies.isLoading}
-        errMess={props.movies.errMess}/>
-    );
-  }
-
-  const SeriesPlayerPage = ({match}) => {
+  const MediaPlayerPage = ({match}) => {
+    let allMedia = [];
+    allMedia = allMedia.concat(movies, series, animes);
 
     return (
-      <MediaPlayer item={series.filter((s) => s.id === parseInt(match.params.id, 10))[0]} 
-        isLoading={props.series.isLoading}
-        errMess={props.series.errMess}/>
-    );
-  }
-
-  const AnimesPlayerPage = ({match}) => {
-
-    return (
-      <MediaPlayer item={animes.filter((a) => a.id === parseInt(match.params.id, 10))[0]} 
-        isLoading={props.animes.isLoading}
-        errMess={props.animes.errMess}/>
+      <MediaPlayer item={allMedia.filter((m) => m.id === parseInt(match.params.id, 10))[0]} 
+        isLoading={props.movies.isLoading || props.series.isLoading || props.animes.isLoading}
+        errMess={props.movies.errMess || props.series.errMess || props.animes.errMess}/>
     );
   }
 
@@ -102,9 +87,7 @@ function Main(props) {
         <Route exact path="/movies" component={MoviesPage} />
         <Route exact path="/series" component={SeriesPage} />
         <Route exact path="/animes" component={AnimesPage} />
-        <Route exact path="/movies/:id" component={MoviesPlayerPage} />
-        <Route exact path="/series/:id" component={SeriesPlayerPage} />
-        <Route exact path="/animes/:id" component={AnimesPlayerPage} />
+        <Route exact path="/medias/:id" component={MediaPlayerPage} />
         <Redirect to="/home" />
       </Switch>
     </div>

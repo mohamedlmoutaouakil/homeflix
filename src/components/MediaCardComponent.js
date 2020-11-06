@@ -27,7 +27,7 @@ function MediaCard({item, page}) {
 
   return (
     <Card className={classes.root}>
-      <Link to={`${page}/${item.id}`} className={classes.link}>
+      <Link to={`medias/${item.id}`} className={classes.link}>
         <CardActionArea>
           <CardMedia
             component="img"

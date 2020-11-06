@@ -111,13 +111,13 @@ function Header(props) {
       setAnchorEl(event.currentTarget);
       
       allItems.movies = allItems.movies.filter(
-        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+        (item) => item.title.toLowerCase().startsWith(searchValue.toLowerCase())
       )
       allItems.series = allItems.series.filter(
-        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+        (item) => item.title.toLowerCase().startsWith(searchValue.toLowerCase())
       )
       allItems.animes = allItems.animes.filter(
-        (item) => item.name.toLowerCase().startsWith(searchValue.toLowerCase())
+        (item) => item.title.toLowerCase().startsWith(searchValue.toLowerCase())
       )
       allItems.totalResults = allItems.movies.length + allItems.series.length + allItems.animes.length;
       setSearchResults(allItems);

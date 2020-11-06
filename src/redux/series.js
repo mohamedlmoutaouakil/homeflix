@@ -7,11 +7,11 @@ export const Series = (state = {
 }, action) => {
 switch(action.type) {
   case ActionTypes.ADD_SERIES:
-      return {...state, isLoading: false, errMess: null, series: action.payload}
+      return {isLoading: false, errMess: null, series: action.payload, movies: state.movies, animes: state.animes}
   case ActionTypes.SERIES_LOADING:
-      return {...state, isLoading: true, errMess: null, series: []}
+      return {isLoading: true, errMess: null, series: [], movies: state.movies, animes: state.animes}
   case ActionTypes.SERIES_FAILED:
-      return {...state, isLoading: false, errMess: action.payload, series: []}
+      return {isLoading: false, errMess: action.payload, series: [], movies: state.movies, animes: state.animes}
   default:
       return state;
 }

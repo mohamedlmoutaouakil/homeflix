@@ -29,7 +29,7 @@ function MediaList(props) {
       <GridList cellHeight={'auto'} className={classes.gridList} cols={5} spacing={6}>
         {props.items.map((item) => (
           <GridListTile key={item.id} cols={1}>
-            <MediaCard item={item} page={props.page}/>
+            <MediaCard item={item} />
           </GridListTile>
         ))}
       </GridList>

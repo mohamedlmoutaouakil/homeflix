@@ -51,7 +51,7 @@ function Movies(props) {
       <div className={classes.itemsCount}>
         <Typography variant='caption'>{props.movies.length} movies</Typography>
       </div>
-      <MediaList items={props.movies} page='movies' subheader='Movies' />
+      <MediaList items={props.movies} subheader='Movies' />
     </Container>
   );
 }
